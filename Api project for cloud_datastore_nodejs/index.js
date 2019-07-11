@@ -19,7 +19,6 @@ const insertVisit = visit => {
   });
 };
 
-
 /**
  * Retrieve the latest 10 visit records from the database.
  */
@@ -37,7 +36,7 @@ app.get('/', async (req, res, next) => {
     Name: "swamy",   
     Id: 25,
   };
-  await insertVisit(visit).then(results => {   
+  await insertVisit(visit).then(() => {   
     res.send("Welcome") 
   }).catch(err=>{
     console.log(err);
