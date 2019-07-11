@@ -38,6 +38,7 @@ app.get('/', async (req, res, next) => {
     Id: 25,
   };
   await insertVisit(visit).then(results => {   
+    res.send("Welcome") 
   }).catch(err=>{
     console.log(err);
   });
