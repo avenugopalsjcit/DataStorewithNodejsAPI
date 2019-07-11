@@ -36,7 +36,7 @@ app.get('/', async (req, res, next) => {
   res
     .status(200)
     .set('Content-Type', 'application/json')
-    .send(`Customers=:\n${JSON.stringify(entities)}`)
+    .send(JSON.stringify(entities))
     .end()
 })
 
