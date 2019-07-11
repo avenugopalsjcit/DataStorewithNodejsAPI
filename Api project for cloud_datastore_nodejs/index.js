@@ -12,7 +12,7 @@ const datastore = new Datastore();
  *
  * @param {object} visit The visit record to insert.
  */
-const insertVisit = visit => {
+const insertCustomer = visit => {
   return datastore.save({
     key: datastore.key('customer'),
     data: visit,
@@ -22,7 +22,7 @@ const insertVisit = visit => {
 /**
  * Retrieve the latest 10 visit records from the database.
  */
-const getVisits = () => {
+const getCustomer = () => {
   const query = datastore
     .createQuery('customer')
     .order('Id', { descending: true });
@@ -32,22 +32,21 @@ const getVisits = () => {
 //Fetching customers.
 app.get('/', async (req, res, next) => {
   // Create a visit record to be stored in the database    
-  const visit = {
+  const customer = {
     Name: "swamy",   
     Id: 25,
   };
-  await insertVisit(visit).then(() => {   
+  await insertCustomer(customer).then(() => {  
     res.send("Welcome") 
   }).catch(err=>{
     console.log(err);
-  });
- 
+  }); 
 });
 
 //Fetching customers.
 app.get('/api/customer', async (req, res, next) => {
   // Create a visit record to be stored in the database    
-   await getVisits().then(results => {
+   await getCustomer().then(results => {
     res
     .status(200)
     .set('Content-Type', 'application/json')
