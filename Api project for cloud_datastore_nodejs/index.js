@@ -10,7 +10,7 @@ const datastore = new Datastore();
 /**
  * Insert a visit record into the database.
  *
- * @param {object} visit The visit record to insert.
+ * @param {object} visit The customer record to insert.
  */
 const insertCustomer = visit => {
   return datastore.save({
@@ -20,7 +20,7 @@ const insertCustomer = visit => {
 };
 
 /**
- * Retrieve the latest 10 visit records from the database.
+ * Retrieve the   customer records from the database.
  */
 const getCustomer = () => {
   const query = datastore
@@ -29,7 +29,7 @@ const getCustomer = () => {
   return datastore.runQuery(query);
 };
 
-//Fetching customers.
+//Welcome for customers.
 app.get('/', async (req, res, next) => {
   // Create a visit record to be stored in the database    
   const customer = {
