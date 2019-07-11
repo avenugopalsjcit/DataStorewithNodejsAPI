@@ -13,9 +13,9 @@ uploaded api which is hosted in gcloud and nosql which is Datastore.
 If you want to see the same in hosted environment i,e gcloud just browse the below url and see the outputs.
 
 https://customervenuapi.appspot.com/
-https://customervenuapi.appspot.com/21
-https://customervenuapi.appspot.com/23
-https://customervenuapi.appspot.com/22
+https://customervenuapi.appspot.com/api/customer
+https://customervenuapi.appspot.com/api/customer/22
+https://customervenuapi.appspot.com/api/customer/25
 
 output
 
