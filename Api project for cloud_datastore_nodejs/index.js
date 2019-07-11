@@ -19,6 +19,7 @@ const insertVisit = visit => {
   });
 };
 
+
 /**
  * Retrieve the latest 10 visit records from the database.
  */
@@ -32,16 +33,33 @@ const getVisits = () => {
 //Fetching customers.
 app.get('/', async (req, res, next) => {
   // Create a visit record to be stored in the database    
-  const [entities] = await getVisits();
-  res
+  const visit = {
+    Name: "swamy",   
+    Id: 25,
+  };
+  await insertVisit(visit).then(results => {   
+  }).catch(err=>{
+    console.log(err);
+  });
+ 
+});
+
+//Fetching customers.
+app.get('/api/customer', async (req, res, next) => {
+  // Create a visit record to be stored in the database    
+   await getVisits().then(results => {
+    res
     .status(200)
     .set('Content-Type', 'application/json')
-    .send(JSON.stringify(entities))
+    .send(JSON.stringify(results))
     .end()
-})
+  }).catch(err=>{
+    console.log(err);
+  }); 
+});
 
 //Fetching customers by Id.
-app.get('/:id', async (req, res) => {
+app.get('/api/customer/:id', async (req, res) => {
   // Create a visit record to be stored in the database     
   var customerid = parseInt(req.params.id, 10)
   const querycust = datastore
@@ -54,7 +72,6 @@ app.get('/:id', async (req, res) => {
       });
       return r;
     }, {});
-
     res
       .status(200)
       .set('Content-Type', 'application/json')
