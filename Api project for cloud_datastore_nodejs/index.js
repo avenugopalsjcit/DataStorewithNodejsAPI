@@ -5,37 +5,17 @@ const { Datastore } = require('@google-cloud/datastore');
 
 // Instantiate a datastore client
 const datastore = new Datastore();
-/**
- * Insert a customers record into the database.
- *
- * @param {object} visit customers insert.
- */
-const insertCustomer = visit => {
-  return datastore.save({
-    key: datastore.key('customer'),
-    data: visit,
-  });
-};
 
-
-/**
- * Retrieve customers.
- */
-const getCustomer = () => {
-  const query = datastore
-    .createQuery('customer')
-    .order('Id', { descending: true });
-  return datastore.runQuery(query);
-};
-
-//Fetching customers.
+//Fetching customers default page.
 app.get('/', async (req, res, next) => {     
     res.send("Welcome")    
 });
 
 //Fetching customers.
-app.get('/api/customer',  (req, res, next) => { 
-    getCustomer().then(results => {
+app.get('/api/customers',  (req, res, next) => { 
+  const querycust = datastore
+  .createQuery('customer')
+  datastore.runQuery(querycust).then(results => {
     res
     .status(200)
     .set('Content-Type', 'application/json')
@@ -46,7 +26,7 @@ app.get('/api/customer',  (req, res, next) => {
 });
 
 //Fetching customers by Id.
-app.get('/api/customer/:id',  (req, res,next) => { 
+app.get('/api/customers/:id',  (req, res,next) => { 
   var customerid = parseInt(req.params.id, 10)
   const querycust = datastore
     .createQuery('customer')
