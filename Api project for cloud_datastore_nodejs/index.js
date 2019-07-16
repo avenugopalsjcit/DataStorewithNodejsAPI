@@ -8,18 +8,18 @@ const datastore = new Datastore();
 
 //Fetching customers default page.
 app.get('/', async (req, res, next) => {     
-    res.send("Welcome")    
+    res.send("Welcome");    
 });
 
 //Fetching customers.
 app.get('/api/customers',  (req, res, next) => { 
   const querycust = datastore
-  .createQuery('customer')
+  .createQuery('customer');
   datastore.runQuery(querycust).then(results => {
     res
     .status(200)
     .set('Content-Type', 'application/json')
-    .send(results)   
+    .send(results);   
   }).catch(err=>{
     console.log(err);
   }); 
@@ -27,7 +27,7 @@ app.get('/api/customers',  (req, res, next) => {
 
 //Fetching customers by Id.
 app.get('/api/customers/:id',  (req, res,next) => { 
-  var customerid = parseInt(req.params.id, 10)
+  var customerid = parseInt(req.params.id, 10);
   const querycust = datastore
     .createQuery('customer')
     .filter('Id', '=', customerid);
@@ -35,7 +35,7 @@ app.get('/api/customers/:id',  (req, res,next) => {
     res
     .status(200)
     .set('Content-Type', 'application/json')
-    .send(results[0][0])  
+    .send(results[0][0]);  
   }).catch(err => {
     console.log(err);  
 });
